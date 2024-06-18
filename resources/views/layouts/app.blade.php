@@ -31,11 +31,6 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/sidebar.js'])
 
-    {{-- scripts externos  --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
-
 
 </head>
 
@@ -77,7 +72,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name . ' ' . Auth::user()->surname }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -96,92 +91,102 @@
                     </ul>
                 </div>
             </div>
+
         </nav>
+        {{-- sidebar --}}
+        @if (Auth::User())
+            <div class="wrapper">
+                <aside id="sidebar">
+                    <div class="d-flex">
+                        <button class="toggle-btn" type="button">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
 
-        <div class="wrapper">
-            <aside id="sidebar">
-                <div class="d-flex">
-                    <button class="toggle-btn" type="button">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-
-                </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item">
+                    </div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-agenda"></i>
+                                <span>Task</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                                <i class="lni lni-protection"></i>
+                                <span>Auth</span>
+                            </a>
+                            <ul id="auth" class="sidebar-dropdown list-unstyled collapse"
+                                data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Login</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Register</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                                data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                                <i class="lni lni-layout"></i>
+                                <span>Multi Level</span>
+                            </a>
+                            <ul id="multi" class="sidebar-dropdown list-unstyled collapse"
+                                data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                        data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                        Two Links
+                                    </a>
+                                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 1</a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-popup"></i>
+                                <span>Notification</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-cog"></i>
+                                <span>Setting</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="sidebar-footer">
                         <a href="#" class="sidebar-link">
-                            <i class="lni lni-user"></i>
-                            <span>Profile</span>
+                            <i class="lni lni-exit"></i>
+                            <span>Logout</span>
                         </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="lni lni-agenda"></i>
-                            <span>Task</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                            data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                            <i class="lni lni-protection"></i>
-                            <span>Auth</span>
-                        </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Login</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Register</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                            data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                            <i class="lni lni-layout"></i>
-                            <span>Multi Level</span>
-                        </a>
-                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                    data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                    Two Links
-                                </a>
-                                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Link 1</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Link 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="lni lni-popup"></i>
-                            <span>Notification</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="lni lni-cog"></i>
-                            <span>Setting</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="sidebar-footer">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-exit"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </aside>
-            <main class="container mt-3">
-                @yield('content')
-            </main>
-        </div>
+                    </div>
+                </aside>
+        @endif
+        <main class="container">
+            @yield('content')
+        </main>
     </div>
+
+    </div>
+
+
+
+
 </body>
 
 </html>
