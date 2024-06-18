@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use App\Models\Bill;
 use App\Models\Table;
+use App\Http\Controllers\MenusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,31 @@ use App\Models\Table;
 
 Route::get('/', function () {
     return view('welcome');
+});
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');
+
+Route::get('/menu/add', [MenusController::class, 'create'])->name('menu.add');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// para pruebas.
     // $table = Table::all();
     // foreach ($table as $tables) {
     //     // echo $tables;
@@ -38,8 +63,6 @@ Route::get('/', function () {
     //     echo $bills->users->name;
     // }
 
-
-
     // $client = Client::all();
 
     // foreach ($client as $clients) {
@@ -51,8 +74,3 @@ Route::get('/', function () {
 
     // var_dump($client);
     // die();
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

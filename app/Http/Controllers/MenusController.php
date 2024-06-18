@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Menu;
+use Illuminate\Support\Facades\Auth;
 
 class MenusController extends Controller
 {
@@ -12,7 +14,13 @@ class MenusController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        $user = Auth::user();
+
+        return view("menus.index", [
+            'menus' => $menus,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -20,7 +28,7 @@ class MenusController extends Controller
      */
     public function create()
     {
-        //
+        return view("menus.add");
     }
 
     /**
