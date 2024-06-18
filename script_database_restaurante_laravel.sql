@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2024-06-17 10:30
+-- Generated: 2024-06-18 10:38
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -12,6 +12,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 ALTER SCHEMA `restaurante_laravel`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_general_ci ;
 
 ALTER TABLE `restaurante_laravel`.`tables` 
+DROP FOREIGN KEY `fk_tables_clients1`,
 DROP FOREIGN KEY `fk_tables_users1`;
 
 ALTER TABLE `restaurante_laravel`.`clients` 
@@ -20,57 +21,38 @@ DROP FOREIGN KEY `fk_clients_users`;
 ALTER TABLE `restaurante_laravel`.`menus` 
 DROP FOREIGN KEY `fk_menus_users1`;
 
-ALTER TABLE `restaurante_laravel`.`CXC` 
-DROP FOREIGN KEY `fk_CXC_users1`;
-
-ALTER TABLE `restaurante_laravel`.`CXP` 
-DROP FOREIGN KEY `fk_CXP_users1`;
-
-ALTER TABLE `restaurante_laravel`.`bill` 
+ALTER TABLE `restaurante_laravel`.`bills` 
+DROP FOREIGN KEY `fk_bills_users1`,
+DROP FOREIGN KEY `fk_sales_menus1`,
 DROP FOREIGN KEY `fk_sales_clients1`;
 
 ALTER TABLE `restaurante_laravel`.`users` 
 CHARACTER SET = utf8 , COLLATE = utf8_general_ci ;
 
 ALTER TABLE `restaurante_laravel`.`tables` 
-CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_tables_users1_idx` (`users_id` ASC) VISIBLE,
-DROP INDEX `fk_tables_users1_idx` ;
-;
+CHARACTER SET = utf8 , COLLATE = utf8_general_ci ;
 
 ALTER TABLE `restaurante_laravel`.`clients` 
-CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_clients_users_idx` (`users_id` ASC) VISIBLE,
-DROP INDEX `fk_clients_users_idx` ;
-;
+CHARACTER SET = utf8 , COLLATE = utf8_general_ci ;
 
 ALTER TABLE `restaurante_laravel`.`menus` 
-CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_menus_users1_idx` (`users_id` ASC) VISIBLE,
-DROP INDEX `fk_menus_users1_idx` ;
-;
+CHARACTER SET = utf8 , COLLATE = utf8_general_ci ;
 
-ALTER TABLE `restaurante_laravel`.`CXC` 
+ALTER TABLE `restaurante_laravel`.`bills` 
 CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_CXC_users1_idx` (`users_id` ASC) VISIBLE,
-DROP INDEX `fk_CXC_users1_idx` ;
-;
-
-ALTER TABLE `restaurante_laravel`.`CXP` 
-CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_CXP_users1_idx` (`users_id` ASC) VISIBLE,
-DROP INDEX `fk_CXP_users1_idx` ;
-;
-
-ALTER TABLE `restaurante_laravel`.`bill` 
-CHARACTER SET = utf8 , COLLATE = utf8_general_ci ,
-ADD INDEX `fk_sales_menus1_idx` (`menus_id` ASC) VISIBLE,
-ADD INDEX `fk_sales_clients1_idx` (`clients_id` ASC) VISIBLE,
+CHANGE COLUMN `users_id` `users_id` INT(11) NOT NULL AFTER `id`,
+ADD INDEX `fk_bills_menus1_idx` (`menus_id` ASC) VISIBLE,
+ADD INDEX `fk_bills_clients1_idx` (`clients_id` ASC) VISIBLE,
 DROP INDEX `fk_sales_clients1_idx` ,
 DROP INDEX `fk_sales_menus1_idx` ;
 ;
 
 ALTER TABLE `restaurante_laravel`.`tables` 
+ADD CONSTRAINT `fk_tables_clients1`
+  FOREIGN KEY (`clients_id`)
+  REFERENCES `restaurante_laravel`.`clients` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_tables_users1`
   FOREIGN KEY (`users_id`)
   REFERENCES `restaurante_laravel`.`users` (`id`)
@@ -91,29 +73,18 @@ ADD CONSTRAINT `fk_menus_users1`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-ALTER TABLE `restaurante_laravel`.`CXC` 
-ADD CONSTRAINT `fk_CXC_users1`
+ALTER TABLE `restaurante_laravel`.`bills` 
+ADD CONSTRAINT `fk_bills_users1`
   FOREIGN KEY (`users_id`)
   REFERENCES `restaurante_laravel`.`users` (`id`)
   ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-ALTER TABLE `restaurante_laravel`.`CXP` 
-ADD CONSTRAINT `fk_CXP_users1`
-  FOREIGN KEY (`users_id`)
-  REFERENCES `restaurante_laravel`.`users` (`id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-ALTER TABLE `restaurante_laravel`.`bill` 
-DROP FOREIGN KEY `fk_sales_menus1`;
-
-ALTER TABLE `restaurante_laravel`.`bill` ADD CONSTRAINT `fk_sales_menus1`
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_bills_menus1`
   FOREIGN KEY (`menus_id`)
   REFERENCES `restaurante_laravel`.`menus` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_sales_clients1`
+ADD CONSTRAINT `fk_bills_clients1`
   FOREIGN KEY (`clients_id`)
   REFERENCES `restaurante_laravel`.`clients` (`id`)
   ON DELETE NO ACTION

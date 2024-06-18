@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Client;
+use App\Models\Bill;
+use App\Models\Table;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +19,38 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
+    // $table = Table::all();
+    // foreach ($table as $tables) {
+    //     // echo $tables;
+    //     echo $tables->name;
+    //     // echo $tables->users->name . ' ' . $tables->users->surname;
+    //     echo $tables->clients->fullname;
+    // }
+
+    // var_dump($table);
+
+
+    // $bill = Bill::all();
+    // foreach ($bill as $bills) {
+    //     echo $bills->clients->fullname;
+    //     echo $bills->menus->name;
+    //     echo $bills->users->name;
+    // }
+
+
+
+    // $client = Client::all();
+
+    // foreach ($client as $clients) {
+    //     echo $clients->fullname;
+    //     echo $clients->address;
+    //     echo $clients->phone;
+    //     echo $clients->users->name;
+    // }
+
+    // var_dump($client);
+    // die();
 });
 
 Auth::routes();
