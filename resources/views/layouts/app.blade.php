@@ -94,8 +94,9 @@
 
         </nav>
         {{-- sidebar --}}
-        @if (Auth::User())
-            <div class="wrapper">
+
+        <div class="wrapper">
+            @if (Auth::User())
                 <aside id="sidebar">
                     <div class="d-flex">
                         <button class="toggle-btn" type="button">
@@ -105,9 +106,9 @@
                     </div>
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
-                                <i class="lni lni-user"></i>
-                                <span>Profile</span>
+                            <a href="{{ route('menu.index') }}" class="sidebar-link">
+                                <i class="fa-solid fa-cash-register"></i>
+                                <span>Menus</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -163,9 +164,9 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="{{ route('user.index') }}" class="sidebar-link">
                                 <i class="lni lni-cog"></i>
-                                <span>Setting</span>
+                                <span>Ajustes de usuario</span>
                             </a>
                         </li>
                     </ul>
@@ -176,11 +177,11 @@
                         </a>
                     </div>
                 </aside>
-        @endif
-        <main class="container">
-            @yield('content')
-        </main>
-    </div>
+            @endif
+            <main class="container">
+                @yield('content')
+            </main>
+        </div>
 
     </div>
 

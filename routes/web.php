@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Bill;
 use App\Models\Table;
 use App\Http\Controllers\MenusController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/user/view', [UsersController::class, 'index'])->name('user.index');
+
+
 
 Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');
 

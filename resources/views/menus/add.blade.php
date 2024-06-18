@@ -9,15 +9,14 @@
                         <h3 class="text-center">agregar tus menus</h3>
                     </div>
 
-                    <a class="btn btn-success" href="#"><i class="fa-solid fa-plus"></i></a>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
+                            {{-- nombre --}}
                             <div class="row mb-3">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -32,10 +31,30 @@
                                 </div>
                             </div>
 
+
+                            {{-- monto --}}
+                            <div class="row mb-3">
+                                <label for="amount"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Monto') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="amount" type="number"
+                                        class="form-control @error('amount') is-invalid @enderror" name="amount"
+                                        value="{{ old('amount') }}" required autocomplete="amount" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
