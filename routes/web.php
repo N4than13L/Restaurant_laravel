@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // vistas de usuario
 Route::get('/user/view', [UsersController::class, 'index'])->name('user.index');
 
+Route::post('/user/update/{id}', [UsersController::class, 'update'])->name('user.update');
 
 // agregando CRUD para menus
 Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');

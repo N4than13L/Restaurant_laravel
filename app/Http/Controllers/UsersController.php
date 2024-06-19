@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -57,7 +59,33 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $email = $request->input("email");
+
+        $user_auth = Auth::user();
+
+        $user = new User();
+
+        // instanciar objeto. 
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->email = $email;
+
+        // var_dump($user);
+        // die();
+
+        if ($user_auth) {
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'name' => $name,
+                    'surname' => $surname,
+                    'email' => $email
+                ]);
+        }
+
+        return redirect()->route('user.index')->with(['message' => 'Datos actualizados con exito']);
     }
 
     /**
