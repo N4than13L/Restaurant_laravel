@@ -168,14 +168,10 @@
                                 <i class="lni lni-cog"></i>
                                 <span>Ajustes de usuario</span>
                             </a>
+
                         </li>
+
                     </ul>
-                    <div class="sidebar-footer">
-                        <a href="#" class="sidebar-link">
-                            <i class="lni lni-exit"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
                 </aside>
             @endif
             <main class="container">
