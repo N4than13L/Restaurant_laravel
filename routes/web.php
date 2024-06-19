@@ -27,14 +27,22 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+// vistas de usuario
 Route::get('/user/view', [UsersController::class, 'index'])->name('user.index');
 
 
-
+// agregando CRUD para menus
 Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');
 
 Route::get('/menu/add', [MenusController::class, 'create'])->name('menu.add');
+
+Route::post('/menu/store', [MenusController::class, 'store'])->name('menu.store');
+
+Route::get('/menu/edit/{id}', [MenusController::class, 'edit'])->name('menu.edit');
+
+Route::post('/menu/update/{id}', [MenusController::class, 'update'])->name('menu.update');
+
+Route::get('/menu/destroy/{id}', [MenusController::class, 'destroy'])->name('menu.destroy');
 
 
 

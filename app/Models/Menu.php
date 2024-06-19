@@ -10,7 +10,7 @@ class Menu extends Model
 {
     use HasFactory;
 
-    public $timesstapms = false;
+    public $timestamps = false;
     protected $table = 'menus';
 
     protected $fillable = [

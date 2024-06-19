@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 mt-5">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center">Listado de comidas</h3>
@@ -23,7 +23,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">nombre</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Monto</th>
 
                                     <th scope="col">Acciones</th>
                                 </tr>
@@ -31,20 +32,27 @@
                             <tbody>
 
                                 @foreach ($menus as $menu)
-                                    <tr>
-                                        <td scope="row">menu id</td>
-                                        <td scope="row">menu nombre</td>
+                                    @if ($user->id == $menu->users_id)
+                                        <tr>
+                                            <td scope="row">{{ $menu->id }}</td>
+                                            <td scope="row">{{ $menu->name }}</td>
+                                            <td scope="row"> DOP: {{ $menu->amount }}</td>
 
-                                        <td scope="row">
-                                            <a href="#" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            <td scope="row">
+                                                {{-- editar --}}
+                                                <a href="{{ route('menu.edit', $menu->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
 
-                                            <a href="#" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                                {{-- eliminar --}}
+                                                <a href="{{ route('menu.destroy', $menu->id) }}"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                         </table>
                     </div>

@@ -6,11 +6,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">agregar tus menus</h3>
+                        <h3 class="text-center">actualiza tus menus</h3>
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('menu.store') }}">
+                        <form method="POST" action="{{ route('menu.update', ['id' => $menu->id]) }}">
                             @csrf
 
                             {{-- nombre --}}
@@ -21,7 +21,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ $menu->name }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <input id="amount" type="number"
                                         class="form-control @error('amount') is-invalid @enderror" name="amount"
-                                        value="{{ old('amount') }}" required autocomplete="amount" autofocus>
+                                        value="{{ $menu->amount }}" required autocomplete="amount" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

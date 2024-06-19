@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class MenusController extends Controller
 {
@@ -36,7 +38,25 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // declarar variables.
+        $name = $request->input('name');
+        $amount = $request->input("amount");
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        // decrar objeto.
+        $menu = new Menu();
+
+        // instanciar objeto. 
+        $menu->name = $name;
+        $menu->amount = $amount;
+        $menu->users_id = $user_id;
+
+        // guardar en DDBB.
+        $menu->save();
+
+        // redirecionar.
+        return redirect()->route('menu.index')->with(['message' => 'Comida agregada conexito']);
     }
 
     /**
@@ -50,9 +70,15 @@ class MenusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        // instanciar objeto.
+        $menu = Menu::find($id);
+
+        // sacar vista con el objeto.
+        return view('menus.edit', [
+            "menu" => $menu
+        ]);
     }
 
     /**
@@ -60,14 +86,43 @@ class MenusController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $name = $request->input('name');
+        $amount = $request->input("amount");
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        // decrar objeto.
+        $menu = new Menu();
+
+        // instanciar objeto. 
+        $menu->name = $name;
+        $menu->amount = $amount;
+        $menu->users_id = $user_id;
+
+        if ($user->id == $menu->users_id) {
+            DB::table('menus')
+                ->where('id', $id)
+                ->update([
+                    'name' => $name,
+                    'amount' => $amount,
+                    'users_id' => $user_id
+                ]);
+        }
+        return redirect()->route('menu.index')->with(['message' => 'menu actualizado con exito']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $user = Auth::user();
+        $menu = Menu::find($id);
+
+        if ($user->id == $menu->users_id) {
+            $menu->delete();
+        }
+
+        return redirect()->route('menu.index')->with(['message' => 'menu eliminado con exito']);
     }
 }
