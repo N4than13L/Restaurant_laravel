@@ -112,9 +112,9 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
-                                <i class="lni lni-agenda"></i>
-                                <span>Task</span>
+                            <a href="{{ route('clients.index') }}" class="sidebar-link">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Cients</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -168,9 +168,7 @@
                                 <i class="lni lni-cog"></i>
                                 <span>Ajustes de usuario</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </aside>
             @endif
@@ -178,11 +176,7 @@
                 @yield('content')
             </main>
         </div>
-
     </div>
-
-
-
 
 </body>
 

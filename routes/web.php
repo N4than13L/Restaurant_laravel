@@ -7,6 +7,7 @@ use App\Models\Bill;
 use App\Models\Table;
 use App\Http\Controllers\MenusController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ClientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,20 @@ Route::get('/user/view', [UsersController::class, 'index'])->name('user.index');
 
 Route::post('/user/update/{id}', [UsersController::class, 'update'])->name('user.update');
 
-// agregando CRUD para menus
+// agregando C.R.U.D para clientes.
+Route::get('/clients/index', [ClientsController::class, 'index'])->name('clients.index');
+
+Route::get('/clients/add', [ClientsController::class, 'create'])->name('clients.create');
+
+Route::post('/clients/store', [ClientsController::class, 'store'])->name('clients.store');
+
+Route::get('/clients/destroy/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
+
+Route::get('/clients/edit/{id}', [ClientsController::class, 'edit'])->name('clients.edit');
+
+Route::post('/clients/update/{id}', [ClientsController::class, 'update'])->name('clients.update');
+
+// agregando C.R.U.D para menus
 Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');
 
 Route::get('/menu/add', [MenusController::class, 'create'])->name('menu.add');
