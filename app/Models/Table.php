@@ -19,6 +19,8 @@ class Table extends Model
         'name',
         'clients_id',
         'users_id',
+        'menus_id',
+
     ];
 
     // relacion de muchos a uno.
@@ -31,5 +33,11 @@ class Table extends Model
     public function clients()
     {
         return $this->belongsTo(Client::class, 'clients_id');
+    }
+
+    // relacion de muchos a uno.
+    public function menus()
+    {
+        return $this->belongsTo(Menu::class, 'menus_id');
     }
 }

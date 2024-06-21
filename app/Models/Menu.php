@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+
 class Menu extends Model
 {
     use HasFactory;
@@ -17,7 +18,8 @@ class Menu extends Model
         'id',
         'name',
         'amount',
-        'users_id'
+        'users_id',
+
     ];
 
     // relacion de muchos a uno.

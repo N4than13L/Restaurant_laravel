@@ -6,7 +6,7 @@
             <div class="col-md-8 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Listado de cientes</h3>
+                        <h3 class="text-center">Listado de comidas</h3>
                     </div>
 
 
@@ -19,37 +19,36 @@
                     @endif
 
                     <div class="card-body">
-                        <a class="btn btn-success" href="{{ Route('clients.create') }}"><i class="fa-solid fa-plus"></i></a>
+                        <a class="btn btn-success" href="{{ route('table.create') }}"><i class="fa-solid fa-plus"></i></a>
                         <table class="table ">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">direccion</th>
-                                    <th scope="col">telofono</th>
+                                    <th scope="col">mesa</th>
+                                    <th scope="col">nombre</th>
+                                    <th scope="col">celular</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($client as $clients)
-                                    @if ($user->id == $clients->users_id)
+                                @foreach ($table as $tables)
+                                    @if ($user->id == $tables->users_id)
                                         <tr>
-                                            <td scope="row">{{ $clients->id }}</td>
-                                            <td scope="row">{{ $clients->fullname }}</td>
-                                            <td scope="row">{{ $clients->address }}</td>
-                                            <td scope="row">{{ $clients->phone }}</td>
+                                            <td scope="row">{{ $tables->id }}</td>
+                                            <td scope="row">{{ $tables->name }}</td>
+                                            <td scope="row">{{ $tables->clients->fullname }}</td>
+                                            <td scope="row">{{ $tables->clients->phone }}</td>
+
 
                                             <td scope="row">
                                                 {{-- editar --}}
-                                                <a href="{{ route('clients.edit', $clients->id) }}"
-                                                    class="btn btn-warning btn-sm">
+                                                <a href="#" class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 {{-- eliminar --}}
-                                                <a href="{{ route('clients.destroy', $clients->id) }}"
-                                                    class="btn btn-danger btn-sm">
+                                                <a href="#" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>

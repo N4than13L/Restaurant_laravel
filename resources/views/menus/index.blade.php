@@ -9,7 +9,7 @@
                         <h3 class="text-center">Listado de comidas</h3>
                     </div>
 
-                    <a class="btn btn-success" href="{{ Route('menu.add') }}"><i class="fa-solid fa-plus"></i></a>
+
 
                     @if (session('message'))
                         <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
@@ -19,6 +19,7 @@
                     @endif
 
                     <div class="card-body">
+                        <a class="btn btn-success" href="{{ Route('menu.add') }}"><i class="fa-solid fa-plus"></i></a>
                         <table class="table ">
                             <thead>
                                 <tr>

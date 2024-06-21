@@ -8,6 +8,7 @@ use App\Models\Table;
 use App\Http\Controllers\MenusController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\TablesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/user/view', [UsersController::class, 'index'])->name('user.index');
 
 Route::post('/user/update/{id}', [UsersController::class, 'update'])->name('user.update');
+// -----------------------------------------------------------
 
 // agregando C.R.U.D para clientes.
 Route::get('/clients/index', [ClientsController::class, 'index'])->name('clients.index');
@@ -45,6 +47,14 @@ Route::get('/clients/destroy/{id}', [ClientsController::class, 'destroy'])->name
 Route::get('/clients/edit/{id}', [ClientsController::class, 'edit'])->name('clients.edit');
 
 Route::post('/clients/update/{id}', [ClientsController::class, 'update'])->name('clients.update');
+// ---------------------------------------------------------------
+// agregar mesas.
+Route::get('/table/index', [TablesController::class, 'index'])->name('table.index');
+
+Route::get('/table/create', [TablesController::class, 'create'])->name('table.create');
+
+Route::post('/table/store', [TablesController::class, 'store'])->name('table.store');
+
 
 // agregando C.R.U.D para menus
 Route::get('/menu/index', [MenusController::class, 'index'])->name('menu.index');
