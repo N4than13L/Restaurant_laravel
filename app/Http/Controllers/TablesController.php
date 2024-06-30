@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Table;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
+use App\Models\Menu;
 
 class TablesController extends Controller
 {
@@ -16,12 +17,14 @@ class TablesController extends Controller
      */
     public function index()
     {
-        //
         $table = Table::all();
+        $menu = Menu::all();
         $user = Auth::user();
+
 
         return view('tables.index', [
             'table' => $table,
+            'menu' => $menu,
             'user' => $user
         ]);
     }
@@ -32,10 +35,12 @@ class TablesController extends Controller
     public function create()
     {
         $client = Client::all();
+        $menu = Menu::all();
         $user = Auth::user();
 
         return view('tables.add', [
             'client' => $client,
+            'menu' => $menu,
             'user' =>  $user
         ]);
     }
@@ -48,13 +53,14 @@ class TablesController extends Controller
         $table = new Table();
         $name = $request->input('name');
         $client_id = $request->input('client');
-        $menu_id = $request->input('menu');
+        $menu_id = $request->input('menu_id');
         $users = Auth::user();
 
 
         $table->name = $name;
         $table->clients_id = $client_id;
-        $table->users_id = $users;
+        $table->users_id = $users->id;
+        $table->menus_id = $menu_id;
 
         var_dump($table);
         die();

@@ -52,15 +52,15 @@
 
                             {{-- menu --}}
                             <div class="row mb-3">
-                                <label for="client"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Cliente') }}</label>
+                                <label for="menu_id"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Menu') }}</label>
 
                                 <div class="col-md-6">
-                                    <select name="client" class="form-select" aria-label="Default select example">
+                                    <select name="menu_id" class="form-select" aria-label="Default select example">
                                         <option selected>Selecciona el menu</option>
-                                        @foreach ($client as $clients)
-                                            <option value="{{ $clients->id }}">
-                                                <p>{{ $clients->fullname }}</p>
+                                        @foreach ($menu as $menus)
+                                            <option value="{{ $menus->id }}">
+                                                <p>{{ $menus->name }}</p>
                                             </option>
                                         @endforeach
 
