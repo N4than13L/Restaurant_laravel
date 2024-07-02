@@ -47,7 +47,7 @@
                                                 </a>
 
                                                 {{-- eliminar --}}
-                                                <a href="{{ route('menu.destroy', $menu->id) }}"
+                                                <a href="{{ route('table.destroy', $menu->id) }}"
                                                     class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>

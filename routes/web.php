@@ -47,6 +47,7 @@ Route::get('/clients/destroy/{id}', [ClientsController::class, 'destroy'])->name
 Route::get('/clients/edit/{id}', [ClientsController::class, 'edit'])->name('clients.edit');
 
 Route::post('/clients/update/{id}', [ClientsController::class, 'update'])->name('clients.update');
+
 // ---------------------------------------------------------------
 // agregar mesas.
 Route::get('/table/index', [TablesController::class, 'index'])->name('table.index');
@@ -54,6 +55,12 @@ Route::get('/table/index', [TablesController::class, 'index'])->name('table.inde
 Route::get('/table/create', [TablesController::class, 'create'])->name('table.create');
 
 Route::post('/table/store', [TablesController::class, 'store'])->name('table.store');
+
+Route::get('/table/edit/{id}', [TablesController::class, 'edit'])->name('table.edit');
+
+Route::post('/table/update/{id}', [TablesController::class, 'update'])->name('table.update');
+
+Route::post('/table/destroy/{id}', [TablesController::class, 'destroy'])->name('table.destroy');
 
 
 // agregando C.R.U.D para menus

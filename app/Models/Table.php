@@ -11,7 +11,7 @@ use App\Models\Menu;
 class Table extends Model
 {
     use HasFactory;
-    public $timesstapms = false;
+    public $timestamps = false;
     protected $table = 'tables';
 
     protected $fillable = [

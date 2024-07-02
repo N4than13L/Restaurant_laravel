@@ -6,7 +6,7 @@
             <div class="col-md-8 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Listado de comidas</h3>
+                        <h3 class="text-center">Listado de reservaciones</h3>
                     </div>
 
 
@@ -43,12 +43,14 @@
 
                                             <td scope="row">
                                                 {{-- editar --}}
-                                                <a href="#" class="btn btn-warning btn-sm">
+                                                <a href="{{ route('table.edit', $tables->id) }}"
+                                                    class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 {{-- eliminar --}}
-                                                <a href="#" class="btn btn-danger btn-sm">
+                                                <a href="{{ route('table.destroy', $tables->id) }}"
+                                                    class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
