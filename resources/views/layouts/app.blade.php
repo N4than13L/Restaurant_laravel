@@ -126,6 +126,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="{{ route('bills.index') }}" class="sidebar-link">
+                                <i class="fa-solid fa-wallet"></i>
+                                <span>Facturas</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
                             <a href="{{ route('user.index') }}" class="sidebar-link">
                                 <i class="lni lni-cog"></i>
                                 <span>Ajustes de usuario</span>

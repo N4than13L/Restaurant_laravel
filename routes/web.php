@@ -9,6 +9,7 @@ use App\Http\Controllers\MenusController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\TablesController;
+use App\Http\Controllers\BillsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +78,17 @@ Route::post('/menu/update/{id}', [MenusController::class, 'update'])->name('menu
 Route::get('/menu/destroy/{id}', [MenusController::class, 'destroy'])->name('menu.destroy');
 
 
+// -------------------------------------------------
+// ruta de facturas.
+Route::get('/bills/index', [BillsController::class, 'index'])->name('bills.index');
 
+Route::get('/bills/add', [BillsController::class, 'create'])->name('bills.create');
 
+Route::post('/bills/store', [BillsController::class, 'store'])->name('bills.store');
+
+Route::get('/bills/edit/{id}', [BillsController::class, 'edit'])->name('bills.edit');
+
+Route::get('/bills/destroy/{id}', [BillsController::class, 'destroy'])->name('bills.destroy');
 
 
 

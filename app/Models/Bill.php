@@ -11,7 +11,7 @@ use App\Models\Client;
 class Bill extends Model
 {
     use HasFactory;
-    public $timesstapms = false;
+    public $timestamps = false;
     protected $table = 'bills';
 
     protected $fillable = [
